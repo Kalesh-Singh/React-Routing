@@ -1,9 +1,10 @@
 import React, {Component} from 'react';
-import {Link} from 'react-router-dom';
+import {Route, Link} from 'react-router-dom';
 import axios from "axios";
 
 import classes from "./Posts.module.css";
 import Post from "../../../components/Post/Post";
+import FullPost from "../FullPost/FullPost";
 
 
 class Posts extends Component {
@@ -28,31 +29,28 @@ class Posts extends Component {
             });
     }
 
-    postSelectedHandler = (id) => {
-        this.setState({selectedPostId: id});
-    };
-
     render() {
 
         let posts = <p style={{textAlign: 'center'}}>Something went wrong!</p>;
         if (!this.state.error) {
             posts = this.state.posts.map(post =>
-                <Link to={'/posts/' + post.id}
-                      key={post.id}>
+                <Link to={this.props.match.url + '/'  + post.id}
+                      key={post.id} exact>
                     <Post
-
                         title={post.title}
                         author={post.author}
-                        clicked={() => this.postSelectedHandler(post.id)}
                     />
                 </Link>
             );
         }
 
         return (
-            <section className={classes.Posts}>
-                {posts}
-            </section>
+            <div>
+                <section className={classes.Posts}>
+                    {posts}
+                </section>
+                <Route path={this.props.match.url + '/:id'} component={FullPost} exact/>
+            </div>
         );
     }
 }
