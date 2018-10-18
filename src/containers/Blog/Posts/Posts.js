@@ -35,11 +35,10 @@ class Posts extends Component {
         if (!this.state.error) {
             posts = this.state.posts.map(post =>
                 <Link to={this.props.match.url + '/'  + post.id}
-                      key={post.id} exact>
+                      key={post.id}>
                     <Post
                         title={post.title}
-                        author={post.author}
-                    />
+                        author={post.author}/>
                 </Link>
             );
         }
