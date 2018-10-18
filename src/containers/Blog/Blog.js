@@ -15,15 +15,13 @@ class Blog extends Component {
                         <ul>
                             <li><Link to='/'>Home</Link></li>
                             <li><Link to={{
-                                pathname: '/new-post',
+                                pathname: 'new-post',
                                 hash: '#submit',
                                 search: '?quick-submit=true'
                             }}>New Post</Link></li>
                         </ul>
                     </nav>
                 </header>
-                {/*<Route path='/' render={() => <h1>Home</h1>} exact/>
-                <Route path='/' render={() => <h1>Home 2</h1>}/>*/}
                 <Route path='/' component={Posts} exact />
                 <Route path='/new-post' component={NewPost} exact />
             </div>
