@@ -10,13 +10,29 @@ class FullPost extends Component {
 
     componentDidMount() {
         console.log('FullPost', this.props);
+        this.loadData();
+
+    }
+
+    componentDidUpdate() {
+        this.loadData();
+    }
+
+    loadData() {
         if (this.props.match.params.id) {
             if (!this.state.loadedPost
-                || (this.state.loadedPost && this.state.loadedPost.id !== this.props.match.params.id))
+                || (this.state.loadedPost && this.state.loadedPost.id != this.props.match.params.id)) {
+
+                // Notice that the check above is not type enforced i.e != and not !==
+                // This is because this.state.loadedPost.id is a number
+                // and this.props.match.params.id is a string
+
                 axios.get('posts/' + this.props.match.params.id)
                     .then(response => {
                         this.setState({loadedPost: response.data});
                     })
+            }
+
         }
     }
 
