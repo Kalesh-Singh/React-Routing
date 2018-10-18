@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Route, NavLink, Switch} from 'react-router-dom';
+import {Route, NavLink, Switch, Redirect} from 'react-router-dom';
 
 import classes from './Blog.module.css';
 import Posts from './Posts/Posts';
@@ -8,7 +8,6 @@ import NewPost from './NewPost/NewPost';
 class Blog extends Component {
 
     render() {
-        // console.log('MATCH', this.props.match.url);
         return (
             <div className={classes.Blog}>
                 <header>
@@ -33,6 +32,7 @@ class Blog extends Component {
                 <Switch>
                     <Route path='/posts' component={Posts}/>
                     <Route path='/new-post' component={NewPost} exact/>
+                    <Redirect from='/' to='/posts'/>
                 </Switch>
             </div>
         );
