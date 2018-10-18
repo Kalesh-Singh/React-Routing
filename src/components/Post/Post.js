@@ -1,8 +1,10 @@
 import React from 'react';
+import {withRouter} from 'react-router-dom';
 
 import classes from './Post.module.css';
 
 function Post(props) {
+    console.log(props);
     return (
         <article className={classes.Post} onClick={props.clicked}>
             <h1>{props.title}</h1>
@@ -14,4 +16,4 @@ function Post(props) {
     );
 }
 
-export default Post;
+export default withRouter(Post);
